@@ -4,6 +4,12 @@
     size="large"
     style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); width: 100%; max-width: 1000px; margin: 0 auto;"
   >
+    <template #header-extra>
+      <n-tag :type="statusColor" round>
+        {{ connectionStatus }}
+      </n-tag>
+    </template>
+
     <div style="margin-top: 20px; min-height: 350px;">
 
       <div v-if="arr.length === 0" style="height: 350px; display: flex; justify-content: center; align-items: center;">
@@ -27,11 +33,19 @@
 import {
   ref, computed, onMounted, onUnmounted,
 } from 'vue';
-import { NCard, NSpin } from 'naive-ui';
+import { NCard, NSpin, NTag } from 'naive-ui';
 import apexchart from 'vue3-apexcharts';
 
 const ws = ref(null);
+const connectionStatus = ref('Waiting for connection...');
 const arr = ref([]);
+
+const statusColor = computed(() => {
+  if (connectionStatus.value === 'Connected') return 'success';
+  if (connectionStatus.value === 'Error') return 'error';
+  if (connectionStatus.value === 'Disconnected') return 'warning';
+  return 'default';
+});
 
 const chartOptions = ref({
   chart: {
@@ -74,6 +88,10 @@ onMounted(() => {
   const connectWebSocket = () => {
     ws.value = new WebSocket('ws://127.0.0.1:3000');
 
+    ws.value.onopen = () => {
+      connectionStatus.value = 'Connected';
+    };
+
     ws.value.onmessage = (event) => {
       const data = JSON.parse(event.data);
       const newArray = [...arr.value, data];
@@ -94,6 +112,15 @@ onMounted(() => {
           max: latestTime,
         },
       };
+    };
+
+    ws.value.onerror = () => {
+      connectionStatus.value = 'Error';
+    };
+
+    ws.value.onclose = () => {
+      connectionStatus.value = 'Disconnected';
+      setTimeout(connectWebSocket, 3000);
     };
   };
   connectWebSocket();
