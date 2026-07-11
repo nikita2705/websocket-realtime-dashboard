@@ -1,0 +1,29 @@
+{
+  "name": "client",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path ../.gitignore"
+  },
+  "dependencies": {
+    "@rushstack/eslint-patch": "^1.16.1",
+    "@vue/eslint-config-airbnb": "^8.0.0",
+    "naive-ui": "^2.44.1",
+    "vfonts": "^0.0.3",
+    "apexcharts": "^5.16.0",
+    "vue": "^3.5.38",
+    "vue3-apexcharts": "^1.11.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.7",
+    "vite": "^8.0.16",
+    "vite-plugin-vue-devtools": "^8.1.2"
+  },
+  "engines": {
+    "node": "^22.18.0 || >=24.12.0"
+  }
+}
