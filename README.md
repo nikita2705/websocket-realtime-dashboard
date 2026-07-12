@@ -2,15 +2,15 @@
 
 ## Projekta palaišanas un instalācijas instrukcija
 
-### Serveris (Backend)
+### Serveris
 1. Atver termināli un dodies uz `server` mapi.
 2. Instalē atkarības: `npm install`
 3. Palaid serveri: `npm start` vai `node server.js`. Serveris darbosies uz portu 3000.
 
-### Klients (Frontend)
+### Klients
 1. Atver jaunu termināļa logu un dodies uz `client` mapi.
 2. Instalē atkarības: `npm install`
-3. **Vides mainīgie (Environment variables):** Klienta saknes mapē izveido `.env` failu pēc `.env.example` parauga. (Ja fails netiks izveidots, sistēma automātiski izmantos noklusējuma localhost adreses).
+3. **Vides mainīgie:** Klienta saknes mapē izveido `.env` failu pēc `.env.example` parauga. Sistēma automātiski izmantos noklusējuma localhost adreses, ja fails netiks izveidots.
 4. Palaid Vue saskarni: `npm run dev`
 
 ---
@@ -26,7 +26,7 @@
 * Grafika X-ass attēlo datuma un laika vērtības, Y-ass- saņemto skaitli. - **Izpildīts**
 * Grafikā tiek uzturēti maksimums 15 datu punkti. - **Izpildīts**
 
-### Papilduzdevums - Datu atjaunošanas mehānisms
+### Papilduzdevums
 * Izstrādāts process, kurš izveido datu punktu failu (`history.json`), ja tāda nav. - **Izpildīts**
 * Pēc servera restarta tiek ielasīts pēdējais datu punkts vēstures turpināšanai. - **Izpildīts**
 * Fails tiek automātiski papildināts ar jaunu ģenerēto datu punktu. - **Izpildīts**
@@ -37,8 +37,8 @@
 * Izstrādāts automātiskas atkārtotas pieslēgšanās mehānisms servera darbības atjaunošanas gadījumā. - **Izpildīts**
 
 ### Papildpunkti un Koda kvalitāte
-* Saskarņu izveidei izmantots NaiveUI ietvars (kartītes, tagi, ielādes indikatori). - **Izpildīts**
-* Koda analīzei izmantots ESLint (ar `eslint-config-airbnb` formatējumu). - **Izpildīts**
+* Saskarņu izveidei izmantots NaiveUI ietvars (kartītes, tagi, ielādes indikatori).
+* Koda analīzei izmantots ESLint ar `eslint-config-airbnb` formatējumu.
 
 ## Informācija par izmantotiem MI rīkiem
 
