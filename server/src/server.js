@@ -1,4 +1,5 @@
 const http = require('node:http');
+const fs = require('fs');
 const { setupWebSocket } = require('./websocket');
 const { startGenerating } = require('./numberGenerator');
 
@@ -7,8 +8,19 @@ const port = 3000;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
+  if (req.url === '/history') {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Content-Type', 'application/json');
+    if (fs.existsSync('./data/history.json')) {
+      const fileContent = fs.readFileSync('./data/history.json', 'utf8');
+      res.end(fileContent);
+    } else {
+      res.end('[]');
+    }
+  } else {
+    res.statusCode = 404;
+    res.end('not found');
+  }
 });
 
 const startedWss = setupWebSocket(server);
